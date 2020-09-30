@@ -1,12 +1,9 @@
 package ru.sapteh;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Program {
     public static void main(String[] args) throws IOException {
-
         var reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Введите имя: ");
         String name = reader.readLine();
@@ -17,7 +14,17 @@ public class Program {
 
         Person person = new Person(name, age, year);
 
+        File dir = new File("C:/java_42/1/Reg");
+        File spisok = new File("C:/java_42/1/Reg/spisok.txt");
+        System.out.println(dir.mkdir() ? "success" : "error");
+        System.out.println(dir.createNewFile() ? "success" : "error");
+
+        FileWriter fw = new FileWriter(spisok);
+
         System.out.println(personIsEmpty(person));
+        fw.write(personIsEmpty(person));
+
+        fw.close();
     }
 
     public static String personIsEmpty(Person a) {
